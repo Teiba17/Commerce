@@ -46,6 +46,7 @@ Before getting started, make sure you have the following installed:
 
 4.Run the development server.
     ```bash
+    
     python manage.py runserver
     
 ## Acknowledgments
