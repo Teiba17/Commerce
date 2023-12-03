@@ -1,0 +1,39 @@
+{% extends "auctions/layout.html" %}
+
+{%block title%}
+    Watchlist
+{% endblock %}
+
+{% block body %}
+
+  <table  class="table table-" id="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Starting Bid</th>
+        <th scope="col">Highest Bid</th>
+        <th scope="col">Added Time</th>
+        <th scope="col">Active</th>
+        <th scope="col">Link</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+                <tr>
+                    <td>{{ item.auct.id }}</td>
+                    <td> {{ item.auct.name }} </td>
+                    <td>$ {{ item.auct.price }} </td>
+                    <td>$ {{ item.auct.current }} </td>
+                    <td> {{ item.auct.date}} </td>
+                    {% if item.auct.active == False %}
+                        <td> NO </td>
+                    {% else %}
+                        <td> YES </td>
+                    {% endif %}
+                    <td> <a href="{%url 'item' item.auct.id %}" class="btn btn-light">Go</a></td>
+                </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

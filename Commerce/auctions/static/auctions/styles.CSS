@@ -1,0 +1,61 @@
+body {
+    padding : 10px  ;
+    background-image : url("/media/images/wal.jpg") ;
+    background-attachment : fixed ;
+    background-size : cover ;
+                        }
+h1, h2, strong, h3 {
+    color : white ;
+}
+
+
+#anav {
+    margin-left:5px;
+}
+
+#table {
+    background-color:#76B947;
+     color:white ;
+      font-size:25px;
+}
+
+
+#catea {
+    background-color:#76B947;
+    color:white;
+    width:25%;
+    height:50px;
+    text-align:center;
+    font-size:20px;
+}
+
+#inputGroup-sizing-default {
+    background-color:#76B947;
+    border-color:#76B947;
+    color:white;
+}
+
+
+.form-control-sm {
+    border-color:white;
+    border-radius: 5px;
+
+}
+
+
+
+#add {
+    margin-left:400px;
+    text-align:center;
+    background-color:#c1563b;
+    width:40% ;
+}
+
+.card-text {
+    color:white;
+    text-overflow:ellipsis ;
+    overflow: hidden;
+    width: 400px;
+    display: block;
+    white-space: nowrap;
+}

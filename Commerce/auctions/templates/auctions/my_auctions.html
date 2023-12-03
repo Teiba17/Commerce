@@ -1,0 +1,47 @@
+{% extends "auctions/layout.html" %}
+
+
+{%block title%}
+    My Auctions
+{% endblock %}
+
+
+{% block body %}
+    <table id="table" class="table table-">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Starting Bid</th>
+                <th scope="col">Highest Bid</th>
+                <th scope="col">Winner(for now)</th>
+                <th scope="col">Added Time</th>
+                <th scope="col">Active</th>
+
+                <th scope="col">Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for items in auctions %}
+                <tr>
+                    <td>{{ items.id }}</td>
+                    <td>{{ items.name }}</td>
+                    <td>${{ items.price }}</td>
+                    <td>${{ items.current }}</td>
+                    <td>{{ items.winner }}</td>
+                    <td>{{ items.date }}</td>
+                    {% if items.active == False %}
+                        <td> NO </td>
+                    {% else %}
+                        <td> YES </td>
+                    {% endif %}
+                    <td> <a href="{%url 'item' items.id %}" class="btn btn-light">Go</a></td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+  </table>
+
+
+
+{% endblock %}

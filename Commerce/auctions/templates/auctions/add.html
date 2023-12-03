@@ -1,0 +1,56 @@
+{% extends "auctions/layout.html" %}
+
+
+
+{%block title%}
+    Add an Auction
+{% endblock %}
+
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="rounded-circle" id="add" >Add an Auction</h2>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+            <input type="text" name ="name" class="form-control-sm" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Price of the item</span>
+            <input type="number" name ="price" class="form-control-sm" aria-describedby="inputGroup-sizing-sm">
+        </div>
+
+        <div class="input-group input-group-sm mb-3">
+                <select  name= cata id="catea" class="form-select form-select-lg mb-3" >
+                    <option selected>Categories</option>
+                    {% for cata in cata%}
+                        <option value="{{cata.id}}">{{cata.name}}</option>
+                    {% endfor %}
+                </select>
+        </div>
+
+
+
+
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">write a way to contact you e.g.(Whatsapp, Facebook URL, email)</span>
+            <input type="text" name ="contact" class="form-control" aria-describedby="inputGroup-sizing-sm">
+        </div>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Write some short details</span>
+            <textarea name="det" rows="7" class="form-control" aria-describedby="inputGroup-sizing-sm"></textarea>
+        </div>
+        <label style="color:white;">{{ form.as_p }}</label>
+        <button type="submit" style="background-color:#027fb7; color:white;" class="btn btn btn-sm">Upload</button>
+    </form>
+
+    <form method="POST" action="{% url 'add_cate' %}">
+        {% csrf_token %}
+        <h2 class="rounded-circle" id="add" >Add a category</h2> <br>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default">Name of the category</span>
+            <input type="text" name ="name" class="form-control-sm" aria-describedby="inputGroup-sizing-sm">
+            <button type="submit" style="background-color:#027fb7; color:white;" class="btn btn btn-sm">Add</button>
+        </div>
+    </form>
+
+{% endblock %}

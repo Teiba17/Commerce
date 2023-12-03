@@ -1,0 +1,95 @@
+{% extends "auctions/layout.html" %}
+
+{%block title%}
+    {{auction.name}}
+{% endblock %}
+
+{% block body %}
+
+    <h2 id="add" class="rounded-circle"  >Auction : {{auction.name}}</h2>
+    <img src="media/images/{{auction.id}}" alt="pic of the item" class="card-img-top" height="600px" width="500px">
+    <h2 style="margin-top:10px; width:35%;" id="add" class="rounded-circle"  >Price and Bid</h2>
+    <h2>Price :${{auction.price}} <br> Current Bid : ${{current}}</h2>
+    {% if auction.active == True %}
+        <form method="post">
+            {% csrf_token %}
+            <h3>Your Bid :  </h3>
+            <input style="border-color:white; width:30%; height:50px;"  type="number" placeholder="Bid" name ="bid" min="{{current}}">
+            <button type="submit" class="btn btn-primary btn-lg" >Submit</button>
+        </form>
+        {% if T %}
+            <form method="post" action="{% url 'close' auction.id %}">
+            {% csrf_token %}
+            <button type="submit"  class="btn btn-danger">Close the auction</button>
+            </form>
+        {% endif %}
+        {% if on_watchlist %}
+            <form action="{% url 'AW' auction.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="remove">
+                <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+            </form>
+        {% else %}
+            <form action="{% url 'AW' auction.id %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add">
+                <button type="submit" class="btn btn-primary">Add to Watchlist</button>
+            </form>
+        {% endif %}
+        <br>
+
+        <h3>Contact The Owner :</h3>
+            <ul>
+                <li style="color:white; font-size: 20px;"> {{auction.con}} </li>
+            </ul>
+
+        <h3>Details :</h3>
+            <ul>
+                <li style="color:white; font-size: 20px;"> {{auction.det}} </li>
+            </ul>
+        <div style="margin-left:450px; padding-top:20px; width:30%; height:90px;" id="add" class="rounded-circle">
+            <h2 >Comments</h2>
+        </div>
+        <br>
+        <div class="row">
+            {% for comment in comments %}
+                <div style="background-color:#c1563b; width:400px; margin-left:5px" class="card">
+                    <div class="card-header">
+                        <h3>{{comment.user.username}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p style="color:white;">{{comment.text}}</p>
+                        </blockquote>
+                    </div>
+                </div>
+            {% endfor %}
+        </div> <br>
+        <form action="{% url 'add_com' auction.id %}" method="POST">
+            {% csrf_token %}
+            <div class="input-group input-group-sm mb-3">
+                <span style="background-color:#c1563b; border-color:#c1563b;" class="input-group-text" id="inputGroup-sizing-default">Add a comment</span>
+                <textarea name="com" rows="4" class="form-control" aria-describedby="inputGroup-sizing-sm"></textarea>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    {%else%}
+            {% if winner %}
+                <h2>The winner is : {{auction.winner}}</h2>
+            {% endif%}
+            <button  class="btn btn-danger">Closed auction</button>
+            {% if on_watchlist %}
+                <form action="{% url 'AW' auction.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="remove">
+                    <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+                </form>
+            {% else %}
+                <form action="{% url 'AW' auction.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="add">
+                    <button type="submit" class="btn btn-primary">Add to Watchlist</button>
+                </form>
+            {% endif %}
+    {% endif %}
+{% endblock %}
