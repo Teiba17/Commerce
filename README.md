@@ -9,9 +9,6 @@ Commerce is a website designed for buying and selling products through a bidding
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
@@ -49,7 +46,10 @@ Before getting started, make sure you have the following installed:
 
 4.Run the development server.
     ```bash
-    
     python manage.py runserver
+    
+## Acknowledgments
+
+I built this project while taking the CS50W course.
 
 
