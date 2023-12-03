@@ -45,7 +45,7 @@ Before getting started, make sure you have the following installed:
     python manage.py migrate
 
 4.Run the development server.
-    ```bash
+    ```bash   
     
     python manage.py runserver
     
